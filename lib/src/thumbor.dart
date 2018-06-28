@@ -1,11 +1,11 @@
-import 'package:meta/meta.dart';
+import 'package:thumbor/src/thumbor_url.dart';
 
 class Thumbor {
   final String host;
   final String key;
 
   Thumbor({
-    @required this.host,
+    this.host,
     this.key,
   }) : assert(host != null) {
     if (host.isEmpty) {
@@ -13,5 +13,7 @@ class Thumbor {
     }
   }
 
-  buildImage(String imageUrl) {}
+  ThumborUrl buildImage(String imageUrl) {
+    return new ThumborUrl(host: host, key: key, imageUrl: imageUrl);
+  }
 }

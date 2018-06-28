@@ -1,3 +1,4 @@
-## [0.0.1] - TODO: Add release date.
+## [0.0.1] - 28-06-2018
 
-* TODO: Describe initial release.
+* Initial release
+* Create simple URIs without any configurations
