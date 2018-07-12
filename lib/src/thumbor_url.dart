@@ -23,6 +23,12 @@ class ThumborUrl {
   TrimOrientation _trimOrientation;
   int _trimTolerance;
 
+  bool _hasCrop = false;
+  int _cropTop = 0;
+  int _cropLeft = 0;
+  int _cropBottom = 0;
+  int _cropRight = 0;
+
   ThumborUrl({
     this.host,
     this.key,
@@ -38,6 +44,27 @@ class ThumborUrl {
     this._hasTrim = true;
     this._trimOrientation = orientation;
     this._trimTolerance = tolerance;
+  }
+
+  void crop(int top, int left, int bottom, int right) {
+    if (top < 0) {
+      throw ArgumentError("Top must be greater or equal to zero");
+    }
+    if (left < 0) {
+      throw ArgumentError("Left must be greater or equal to zero");
+    }
+    if (bottom < 0) {
+      throw ArgumentError("Bottom must be greater or equal to zero");
+    }
+    if (right < 0) {
+      throw ArgumentError("Right must be greater or equal to zero");
+    }
+
+    this._hasCrop = true;
+    this._cropTop = top;
+    this._cropLeft = left;
+    this._cropBottom = bottom;
+    this._cropRight = right;
   }
 
   String toUrl() {
@@ -74,6 +101,10 @@ class ThumborUrl {
         }
       }
       config += "/";
+    }
+
+    if (_hasCrop) {
+      config += "${_cropLeft}x${_cropTop}:${_cropRight}x${_cropBottom}/";
     }
 
     config += imageUrl;
