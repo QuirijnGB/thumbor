@@ -2,6 +2,16 @@ import 'dart:convert';
 
 import 'package:crypto/crypto.dart';
 
+class TrimOrientation {
+  const TrimOrientation(String value) : value = value;
+
+  final String value;
+
+  static const TrimOrientation topLeft = const TrimOrientation("top-left");
+  static const TrimOrientation bottomRight =
+      const TrimOrientation("bottom-right");
+}
+
 class ThumborUrl {
   final String host;
   final String key;
@@ -10,6 +20,8 @@ class ThumborUrl {
   static const PREFIX_TRIM = "trim";
 
   bool _hasTrim = false;
+  TrimOrientation _trimOrientation;
+  int _trimTolerance;
 
   ThumborUrl({
     this.host,
@@ -22,8 +34,10 @@ class ThumborUrl {
     }
   }
 
-  void trim() {
+  void trim({TrimOrientation orientation, int tolerance = 0}) {
     this._hasTrim = true;
+    this._trimOrientation = orientation;
+    this._trimTolerance = tolerance;
   }
 
   String toUrl() {
@@ -52,6 +66,13 @@ class ThumborUrl {
 
     if (_hasTrim) {
       config += PREFIX_TRIM;
+
+      if (_trimOrientation != null) {
+        config += ":${_trimOrientation.value}";
+        if (_trimTolerance > 0) {
+          config += ":${_trimTolerance.toString()}";
+        }
+      }
       config += "/";
     }
 
