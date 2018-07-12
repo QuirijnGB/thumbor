@@ -89,7 +89,7 @@ void main() {
   });
 
   test(
-      'creates an unsafe instance of ThumborUrl with trim, orientation and tolerance then gets the unsafe url',
+      'creates an unsafe instance of ThumborUrl with a crop then gets the unsafe url',
       () {
     var thumborUrl = new ThumborUrl(
         host: "http://thumbor.example.com/",
@@ -98,5 +98,17 @@ void main() {
 
     expect(thumborUrl.toUnsafeUrl(),
         "http://thumbor.example.com/unsafe/2x1:4x3/http://images.google.com/im-feeling-lucky.jpg");
+  });
+
+  test(
+      'creates an unsafe instance of ThumborUrl with a resize then gets the unsafe url',
+      () {
+    var thumborUrl = new ThumborUrl(
+        host: "http://thumbor.example.com/",
+        imageUrl: "http://images.google.com/im-feeling-lucky.jpg")
+      ..resize(height: 200, width: 300);
+
+    expect(thumborUrl.toUnsafeUrl(),
+        "http://thumbor.example.com/unsafe/300x200/http://images.google.com/im-feeling-lucky.jpg");
   });
 }

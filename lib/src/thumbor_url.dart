@@ -29,6 +29,10 @@ class ThumborUrl {
   int _cropBottom = 0;
   int _cropRight = 0;
 
+  bool _hasResize = false;
+  int _resizeHeight;
+  int _resizeWidth;
+
   ThumborUrl({
     this.host,
     this.key,
@@ -65,6 +69,23 @@ class ThumborUrl {
     this._cropLeft = left;
     this._cropBottom = bottom;
     this._cropRight = right;
+  }
+
+  void resize({int width = 0, int height = 0}) {
+    if (width < 0) {
+      throw ArgumentError("Width must be a positive number.");
+    }
+    if (height < 0) {
+      throw ArgumentError("Height must be a positive number.");
+    }
+    if (width == 0 && height == 0) {
+      throw ArgumentError("Both width and height must not be zero.");
+    }
+
+    this._hasResize = true;
+
+    this._resizeHeight = height;
+    this._resizeWidth = width;
   }
 
   String toUrl() {
@@ -105,6 +126,10 @@ class ThumborUrl {
 
     if (_hasCrop) {
       config += "${_cropLeft}x${_cropTop}:${_cropRight}x${_cropBottom}/";
+    }
+
+    if (_hasResize) {
+      config += "${_resizeWidth}x${_resizeHeight}/";
     }
 
     config += imageUrl;
