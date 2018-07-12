@@ -40,7 +40,7 @@ void main() {
         imageUrl: "http://images.google.com/im-feeling-lucky.jpg");
 
     expect(thumborUrl.toUrl(),
-        "http://thumbor.example.com/qZKaZJPvUX+spYpawhsBv320rmA=/http://images.google.com/im-feeling-lucky.jpg");
+        "http://thumbor.example.com/qZKaZJPvUX-spYpawhsBv320rmA=/http://images.google.com/im-feeling-lucky.jpg");
   });
 
   test('creates a safe instance of ThumborUrl and gets the safe url', () {
@@ -50,6 +50,6 @@ void main() {
         imageUrl: "http://images.google.com/im-feeling-lucky.jpg");
 
     expect(thumborUrl.toSafeUrl(),
-        "http://thumbor.example.com/qZKaZJPvUX+spYpawhsBv320rmA=/http://images.google.com/im-feeling-lucky.jpg");
+        "http://thumbor.example.com/qZKaZJPvUX-spYpawhsBv320rmA=/http://images.google.com/im-feeling-lucky.jpg");
   });
 }
