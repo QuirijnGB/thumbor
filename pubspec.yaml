@@ -1,6 +1,6 @@
 name: thumbor
 description: A Thumbor client for Dart
-version: 0.0.1
+version: 0.0.2
 author: Quirijn Groot Bluemink <quirijn.grootbluemink@gmail.com>
 homepage: https://github.com/QuirijnGB/thumbor
 
