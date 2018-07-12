@@ -36,7 +36,7 @@ class ThumborUrl {
 
     var hmac = new Hmac(sha1, utf8.encode(key));
     var digest = hmac.convert(utf8.encode(config));
-    var encoded = base64.encode(digest.bytes);
+    var encoded = base64Url.encode(digest.bytes);
     return host + "$encoded/" + config;
   }
 
