@@ -7,6 +7,9 @@ class ThumborUrl {
   final String key;
   final String imageUrl;
   static const PREFIX_UNSAFE = "unsafe/";
+  static const PREFIX_TRIM = "trim";
+
+  bool _hasTrim = false;
 
   ThumborUrl({
     this.host,
@@ -17,6 +20,10 @@ class ThumborUrl {
     if (host.isEmpty) {
       throw ArgumentError("Host may not be empty");
     }
+  }
+
+  void trim() {
+    this._hasTrim = true;
   }
 
   String toUrl() {
@@ -41,6 +48,14 @@ class ThumborUrl {
   }
 
   String _assembleConfig() {
-    return imageUrl;
+    String config = "";
+
+    if (_hasTrim) {
+      config += PREFIX_TRIM;
+      config += "/";
+    }
+
+    config += imageUrl;
+    return config;
   }
 }
