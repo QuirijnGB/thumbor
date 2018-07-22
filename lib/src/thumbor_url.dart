@@ -12,6 +12,26 @@ class TrimOrientation {
       const TrimOrientation("bottom-right");
 }
 
+class HorizontalAlignment {
+  const HorizontalAlignment(String value) : value = value;
+
+  final String value;
+
+  static const HorizontalAlignment left = const HorizontalAlignment("left");
+  static const HorizontalAlignment center = const HorizontalAlignment("center");
+  static const HorizontalAlignment right = const HorizontalAlignment("right");
+}
+
+class VerticalAlignment {
+  const VerticalAlignment(String value) : value = value;
+
+  final String value;
+
+  static const VerticalAlignment top = const VerticalAlignment("top");
+  static const VerticalAlignment middle = const VerticalAlignment("middle");
+  static const VerticalAlignment bottom = const VerticalAlignment("bottom");
+}
+
 class ThumborUrl {
   final String host;
   final String key;
@@ -37,6 +57,9 @@ class ThumborUrl {
   bool _flipVertically = false;
   bool _flipHorizontally = false;
   bool _smart = false;
+
+  HorizontalAlignment _horizontalAlign;
+  VerticalAlignment _verticalAlign;
 
   ThumborUrl({
     this.host,
@@ -114,6 +137,22 @@ class ThumborUrl {
     this._smart = true;
   }
 
+  void horizontalAlign(HorizontalAlignment align) {
+    if (!this._hasResize) {
+      throw StateError("Resize must be called first");
+    }
+
+    this._horizontalAlign = align;
+  }
+
+  void verticalAlign(VerticalAlignment align) {
+    if (!this._hasResize) {
+      throw StateError("Resize must be called first");
+    }
+
+    this._verticalAlign = align;
+  }
+
   String toUrl() {
     return key == null ? toUnsafeUrl() : toSafeUrl();
   }
@@ -177,7 +216,15 @@ class ThumborUrl {
 
       if (_smart) {
         config += "/smart";
+      } else {
+        if (_horizontalAlign != null) {
+          config += "/${_horizontalAlign.value}";
+        }
+        if (_verticalAlign != null) {
+          config += "/${_verticalAlign.value}";
+        }
       }
+
       config += "/";
     }
 
