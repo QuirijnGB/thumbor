@@ -214,4 +214,43 @@ void main() {
     expect(thumborUrl.toUnsafeUrl(),
         "http://thumbor.example.com/unsafe/300x200/right/middle/http://images.google.com/im-feeling-lucky.jpg");
   });
+
+  test(
+      'creates an unsafe instance of ThumborUrl with a vertical and horizontal align resize then gets the unsafe url',
+      () {
+    var thumborUrl = new ThumborUrl(
+        host: "http://thumbor.example.com/",
+        imageUrl: "http://images.google.com/im-feeling-lucky.jpg")
+      ..resize(height: 200, width: 300)
+      ..fitIn(FitInStyle.adaptive);
+
+    expect(thumborUrl.toUnsafeUrl(),
+        "http://thumbor.example.com/unsafe/adaptive-fit-in/300x200/http://images.google.com/im-feeling-lucky.jpg");
+  });
+
+  test(
+      'creates an unsafe instance of ThumborUrl with a vertical and horizontal align resize then gets the unsafe url',
+      () {
+    var thumborUrl = new ThumborUrl(
+        host: "http://thumbor.example.com/",
+        imageUrl: "http://images.google.com/im-feeling-lucky.jpg")
+      ..resize(height: 200, width: 300)
+      ..fitIn(FitInStyle.normal);
+
+    expect(thumborUrl.toUnsafeUrl(),
+        "http://thumbor.example.com/unsafe/fit-in/300x200/http://images.google.com/im-feeling-lucky.jpg");
+  });
+
+  test(
+      'creates an unsafe instance of ThumborUrl with a vertical and horizontal align resize then gets the unsafe url',
+      () {
+    var thumborUrl = new ThumborUrl(
+        host: "http://thumbor.example.com/",
+        imageUrl: "http://images.google.com/im-feeling-lucky.jpg")
+      ..resize(height: 200, width: 300)
+      ..fitIn(FitInStyle.full);
+
+    expect(thumborUrl.toUnsafeUrl(),
+        "http://thumbor.example.com/unsafe/full-fit-in/300x200/http://images.google.com/im-feeling-lucky.jpg");
+  });
 }

@@ -32,6 +32,16 @@ class VerticalAlignment {
   static const VerticalAlignment bottom = const VerticalAlignment("bottom");
 }
 
+class FitInStyle {
+  const FitInStyle(String value) : value = value;
+
+  final String value;
+
+  static const FitInStyle normal = const FitInStyle("fit-in");
+  static const FitInStyle full = const FitInStyle("full-fit-in");
+  static const FitInStyle adaptive = const FitInStyle("adaptive-fit-in");
+}
+
 class ThumborUrl {
   final String host;
   final String key;
@@ -60,6 +70,8 @@ class ThumborUrl {
 
   HorizontalAlignment _horizontalAlign;
   VerticalAlignment _verticalAlign;
+
+  FitInStyle _fitInStyle;
 
   ThumborUrl({
     this.host,
@@ -153,6 +165,14 @@ class ThumborUrl {
     this._verticalAlign = align;
   }
 
+  void fitIn(FitInStyle style) {
+    if (!this._hasResize) {
+      throw StateError("Resize must be called first");
+    }
+
+    this._fitInStyle = style;
+  }
+
   String toUrl() {
     return key == null ? toUnsafeUrl() : toSafeUrl();
   }
@@ -194,6 +214,10 @@ class ThumborUrl {
     }
 
     if (_hasResize) {
+      if (_fitInStyle != null) {
+        config += "${_fitInStyle.value}/";
+      }
+
       if (_flipHorizontally) {
         config += "-";
       }
