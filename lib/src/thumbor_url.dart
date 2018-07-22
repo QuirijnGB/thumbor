@@ -34,6 +34,9 @@ class ThumborUrl {
   int _resizeHeight;
   int _resizeWidth;
 
+  bool _flipVertically = false;
+  bool _flipHorizontally = false;
+
   ThumborUrl({
     this.host,
     this.key,
@@ -89,6 +92,20 @@ class ThumborUrl {
     this._resizeWidth = width;
   }
 
+  void flipVertically() {
+    if (!this._hasResize) {
+      throw StateError("Resize must be called first");
+    }
+    this._flipVertically = true;
+  }
+
+  void flipHorizontally() {
+    if (!this._hasResize) {
+      throw StateError("Resize must be called first");
+    }
+    this._flipHorizontally = true;
+  }
+
   String toUrl() {
     return key == null ? toUnsafeUrl() : toSafeUrl();
   }
@@ -130,6 +147,9 @@ class ThumborUrl {
     }
 
     if (_hasResize) {
+      if (_flipHorizontally) {
+        config += "-";
+      }
       if (_resizeWidth == ORIGINAL_SIZE) {
         config += "orig";
       } else {
@@ -138,6 +158,9 @@ class ThumborUrl {
 
       config += "x";
 
+      if (_flipVertically) {
+        config += "-";
+      }
       if (_resizeHeight == ORIGINAL_SIZE) {
         config += "orig";
       } else {
