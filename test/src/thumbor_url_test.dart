@@ -111,4 +111,28 @@ void main() {
     expect(thumborUrl.toUnsafeUrl(),
         "http://thumbor.example.com/unsafe/300x200/http://images.google.com/im-feeling-lucky.jpg");
   });
+
+  test(
+      'creates an unsafe instance of ThumborUrl with a resize and an original height then gets the unsafe url',
+      () {
+    var thumborUrl = new ThumborUrl(
+        host: "http://thumbor.example.com/",
+        imageUrl: "http://images.google.com/im-feeling-lucky.jpg")
+      ..resize(height: ThumborUrl.ORIGINAL_SIZE, width: 300);
+
+    expect(thumborUrl.toUnsafeUrl(),
+        "http://thumbor.example.com/unsafe/300xorig/http://images.google.com/im-feeling-lucky.jpg");
+  });
+
+  test(
+      'creates an unsafe instance of ThumborUrl with a resize and an original width then gets the unsafe url',
+      () {
+    var thumborUrl = new ThumborUrl(
+        host: "http://thumbor.example.com/",
+        imageUrl: "http://images.google.com/im-feeling-lucky.jpg")
+      ..resize(height: 200, width: ThumborUrl.ORIGINAL_SIZE);
+
+    expect(thumborUrl.toUnsafeUrl(),
+        "http://thumbor.example.com/unsafe/origx200/http://images.google.com/im-feeling-lucky.jpg");
+  });
 }

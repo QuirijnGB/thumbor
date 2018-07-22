@@ -18,6 +18,7 @@ class ThumborUrl {
   final String imageUrl;
   static const PREFIX_UNSAFE = "unsafe/";
   static const PREFIX_TRIM = "trim";
+  static const ORIGINAL_SIZE = -10000;
 
   bool _hasTrim = false;
   TrimOrientation _trimOrientation;
@@ -72,10 +73,10 @@ class ThumborUrl {
   }
 
   void resize({int width = 0, int height = 0}) {
-    if (width < 0) {
+    if (width < 0 && width != ORIGINAL_SIZE) {
       throw ArgumentError("Width must be a positive number.");
     }
-    if (height < 0) {
+    if (height < 0 && height != ORIGINAL_SIZE) {
       throw ArgumentError("Height must be a positive number.");
     }
     if (width == 0 && height == 0) {
@@ -129,7 +130,21 @@ class ThumborUrl {
     }
 
     if (_hasResize) {
-      config += "${_resizeWidth}x${_resizeHeight}/";
+      if (_resizeWidth == ORIGINAL_SIZE) {
+        config += "orig";
+      } else {
+        config += "${_resizeWidth}";
+      }
+
+      config += "x";
+
+      if (_resizeHeight == ORIGINAL_SIZE) {
+        config += "orig";
+      } else {
+        config += "${_resizeHeight}";
+      }
+
+      config += "/";
     }
 
     config += imageUrl;
