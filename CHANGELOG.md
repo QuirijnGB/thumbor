@@ -1,3 +1,7 @@
+## [1.0.0] - 22-07-2018
+
+* Implemented all the Filters
+
 ## [0.0.4] - 22-07-2018
 
 * Updated upper boundary of the Dart SDK
