@@ -253,4 +253,259 @@ void main() {
     expect(thumborUrl.toUnsafeUrl(),
         "http://thumbor.example.com/unsafe/full-fit-in/300x200/http://images.google.com/im-feeling-lucky.jpg");
   });
+
+  test(
+      'creates an unsafe instance of ThumborUrl with a brightness filter then gets the unsafe url',
+      () {
+    var thumborUrl = new ThumborUrl(
+        host: "http://thumbor.example.com/",
+        imageUrl: "http://images.google.com/im-feeling-lucky.jpg")
+      ..filter([ThumborUrl.brightness(80)]);
+
+    expect(thumborUrl.toUnsafeUrl(),
+        "http://thumbor.example.com/unsafe/filters:brightness(80)/http://images.google.com/im-feeling-lucky.jpg");
+  });
+
+  test(
+      'creates an unsafe instance of ThumborUrl with a contrast filter then gets the unsafe url',
+      () {
+    var thumborUrl = new ThumborUrl(
+        host: "http://thumbor.example.com/",
+        imageUrl: "http://images.google.com/im-feeling-lucky.jpg")
+      ..filter([ThumborUrl.contrast(80)]);
+
+    expect(thumborUrl.toUnsafeUrl(),
+        "http://thumbor.example.com/unsafe/filters:contrast(80)/http://images.google.com/im-feeling-lucky.jpg");
+  });
+
+  test(
+      'creates an unsafe instance of ThumborUrl with a noise filter then gets the unsafe url',
+      () {
+    var thumborUrl = new ThumborUrl(
+        host: "http://thumbor.example.com/",
+        imageUrl: "http://images.google.com/im-feeling-lucky.jpg")
+      ..filter([ThumborUrl.noise(80)]);
+
+    expect(thumborUrl.toUnsafeUrl(),
+        "http://thumbor.example.com/unsafe/filters:noise(80)/http://images.google.com/im-feeling-lucky.jpg");
+  });
+
+  test(
+      'creates an unsafe instance of ThumborUrl with a quality filter then gets the unsafe url',
+      () {
+    var thumborUrl = new ThumborUrl(
+        host: "http://thumbor.example.com/",
+        imageUrl: "http://images.google.com/im-feeling-lucky.jpg")
+      ..filter([ThumborUrl.quality(80)]);
+
+    expect(thumborUrl.toUnsafeUrl(),
+        "http://thumbor.example.com/unsafe/filters:quality(80)/http://images.google.com/im-feeling-lucky.jpg");
+  });
+
+  test(
+      'creates an unsafe instance of ThumborUrl with a rgb filter then gets the unsafe url',
+      () {
+    var thumborUrl = new ThumborUrl(
+        host: "http://thumbor.example.com/",
+        imageUrl: "http://images.google.com/im-feeling-lucky.jpg")
+      ..filter([ThumborUrl.rgb(0, 1, 2)]);
+
+    expect(thumborUrl.toUnsafeUrl(),
+        "http://thumbor.example.com/unsafe/filters:rgb(0,1,2)/http://images.google.com/im-feeling-lucky.jpg");
+  });
+
+  test(
+      'creates an unsafe instance of ThumborUrl with a round_corner filter then gets the unsafe url',
+      () {
+    var thumborUrl = new ThumborUrl(
+        host: "http://thumbor.example.com/",
+        imageUrl: "http://images.google.com/im-feeling-lucky.jpg")
+      ..filter([ThumborUrl.roundCorner(10, 20, 0xFFFFFF)]);
+
+    expect(thumborUrl.toUnsafeUrl(),
+        "http://thumbor.example.com/unsafe/filters:round_corner(10|20,255,255,255)/http://images.google.com/im-feeling-lucky.jpg");
+  });
+
+  test(
+      'creates an unsafe instance of ThumborUrl with a watermark filter then gets the unsafe url',
+      () {
+    var thumborUrl = new ThumborUrl(
+        host: "http://thumbor.example.com/",
+        imageUrl: "http://images.google.com/im-feeling-lucky.jpg")
+      ..filter([
+        ThumborUrl.watermark(
+            "http://images.google.com/watermark.jpg", 0, 10, 50)
+      ]);
+
+    expect(thumborUrl.toUnsafeUrl(),
+        "http://thumbor.example.com/unsafe/filters:watermark(http://images.google.com/watermark.jpg,0,10,50)/http://images.google.com/im-feeling-lucky.jpg");
+  });
+
+  test(
+      'creates an unsafe instance of ThumborUrl with a sharpen filter then gets the unsafe url',
+      () {
+    var thumborUrl = new ThumborUrl(
+        host: "http://thumbor.example.com/",
+        imageUrl: "http://images.google.com/im-feeling-lucky.jpg")
+      ..filter([ThumborUrl.sharpen(10.0, 20.0, true)]);
+
+    expect(thumborUrl.toUnsafeUrl(),
+        "http://thumbor.example.com/unsafe/filters:sharpen(10.0,20.0,true)/http://images.google.com/im-feeling-lucky.jpg");
+  });
+
+  test(
+      'creates an unsafe instance of ThumborUrl with a fill filter then gets the unsafe url',
+      () {
+    var thumborUrl = new ThumborUrl(
+        host: "http://thumbor.example.com/",
+        imageUrl: "http://images.google.com/im-feeling-lucky.jpg")
+      ..filter([ThumborUrl.fill(0xFF00FF)]);
+
+    expect(thumborUrl.toUnsafeUrl(),
+        "http://thumbor.example.com/unsafe/filters:fill(ff00ff)/http://images.google.com/im-feeling-lucky.jpg");
+  });
+
+  test(
+      'creates an unsafe instance of ThumborUrl with a format filter then gets the unsafe url',
+      () {
+    var thumborUrl = new ThumborUrl(
+        host: "http://thumbor.example.com/",
+        imageUrl: "http://images.google.com/im-feeling-lucky.jpg")
+      ..filter([ThumborUrl.format(ImageFormat.GIF)]);
+
+    expect(thumborUrl.toUnsafeUrl(),
+        "http://thumbor.example.com/unsafe/filters:format(gif)/http://images.google.com/im-feeling-lucky.jpg");
+  });
+
+  test(
+      'creates an unsafe instance of ThumborUrl with a format filter then gets the unsafe url',
+      () {
+    var thumborUrl = new ThumborUrl(
+        host: "http://thumbor.example.com/",
+        imageUrl: "http://images.google.com/im-feeling-lucky.jpg")
+      ..filter([ThumborUrl.format(ImageFormat.JPEG)]);
+
+    expect(thumborUrl.toUnsafeUrl(),
+        "http://thumbor.example.com/unsafe/filters:format(jpeg)/http://images.google.com/im-feeling-lucky.jpg");
+  });
+
+  test(
+      'creates an unsafe instance of ThumborUrl with a format filter then gets the unsafe url',
+      () {
+    var thumborUrl = new ThumborUrl(
+        host: "http://thumbor.example.com/",
+        imageUrl: "http://images.google.com/im-feeling-lucky.jpg")
+      ..filter([ThumborUrl.format(ImageFormat.PNG)]);
+
+    expect(thumborUrl.toUnsafeUrl(),
+        "http://thumbor.example.com/unsafe/filters:format(png)/http://images.google.com/im-feeling-lucky.jpg");
+  });
+
+  test(
+      'creates an unsafe instance of ThumborUrl with a format filter then gets the unsafe url',
+      () {
+    var thumborUrl = new ThumborUrl(
+        host: "http://thumbor.example.com/",
+        imageUrl: "http://images.google.com/im-feeling-lucky.jpg")
+      ..filter([ThumborUrl.format(ImageFormat.WEBP)]);
+
+    expect(thumborUrl.toUnsafeUrl(),
+        "http://thumbor.example.com/unsafe/filters:format(webp)/http://images.google.com/im-feeling-lucky.jpg");
+  });
+
+  test(
+      'creates an unsafe instance of ThumborUrl with a frame filter then gets the unsafe url',
+      () {
+    var thumborUrl = new ThumborUrl(
+        host: "http://thumbor.example.com/",
+        imageUrl: "http://images.google.com/im-feeling-lucky.jpg")
+      ..filter([ThumborUrl.frame("http://images.google.com/frame.jpg")]);
+
+    expect(thumborUrl.toUnsafeUrl(),
+        "http://thumbor.example.com/unsafe/filters:frame(http://images.google.com/frame.jpg)/http://images.google.com/im-feeling-lucky.jpg");
+  });
+
+  test(
+      'creates an unsafe instance of ThumborUrl with a stripICC filter then gets the unsafe url',
+      () {
+    var thumborUrl = new ThumborUrl(
+        host: "http://thumbor.example.com/",
+        imageUrl: "http://images.google.com/im-feeling-lucky.jpg")
+      ..filter([ThumborUrl.stripicc()]);
+
+    expect(thumborUrl.toUnsafeUrl(),
+        "http://thumbor.example.com/unsafe/filters:strip_icc()/http://images.google.com/im-feeling-lucky.jpg");
+  });
+
+  test(
+      'creates an unsafe instance of ThumborUrl with a grayscale filter then gets the unsafe url',
+      () {
+    var thumborUrl = new ThumborUrl(
+        host: "http://thumbor.example.com/",
+        imageUrl: "http://images.google.com/im-feeling-lucky.jpg")
+      ..filter([ThumborUrl.grayscale()]);
+
+    expect(thumborUrl.toUnsafeUrl(),
+        "http://thumbor.example.com/unsafe/filters:grayscale()/http://images.google.com/im-feeling-lucky.jpg");
+  });
+
+  test(
+      'creates an unsafe instance of ThumborUrl with a equalize filter then gets the unsafe url',
+      () {
+    var thumborUrl = new ThumborUrl(
+        host: "http://thumbor.example.com/",
+        imageUrl: "http://images.google.com/im-feeling-lucky.jpg")
+      ..filter([ThumborUrl.equalize()]);
+
+    expect(thumborUrl.toUnsafeUrl(),
+        "http://thumbor.example.com/unsafe/filters:equalize()/http://images.google.com/im-feeling-lucky.jpg");
+  });
+
+  test(
+      'creates an unsafe instance of ThumborUrl with a blur filter then gets the unsafe url',
+      () {
+    var thumborUrl = new ThumborUrl(
+        host: "http://thumbor.example.com/",
+        imageUrl: "http://images.google.com/im-feeling-lucky.jpg")
+      ..filter([ThumborUrl.blur(100, 300)]);
+
+    expect(thumborUrl.toUnsafeUrl(),
+        "http://thumbor.example.com/unsafe/filters:blur(100,300)/http://images.google.com/im-feeling-lucky.jpg");
+  });
+
+  test(
+      'creates an unsafe instance of ThumborUrl with a no_upscale filter then gets the unsafe url',
+      () {
+    var thumborUrl = new ThumborUrl(
+        host: "http://thumbor.example.com/",
+        imageUrl: "http://images.google.com/im-feeling-lucky.jpg")
+      ..filter([ThumborUrl.noUpscale()]);
+
+    expect(thumborUrl.toUnsafeUrl(),
+        "http://thumbor.example.com/unsafe/filters:no_upscale()/http://images.google.com/im-feeling-lucky.jpg");
+  });
+
+  test(
+      'creates an unsafe instance of ThumborUrl with a rotate filter then gets the unsafe url',
+      () {
+    var thumborUrl = new ThumborUrl(
+        host: "http://thumbor.example.com/",
+        imageUrl: "http://images.google.com/im-feeling-lucky.jpg")
+      ..filter([ThumborUrl.rotate(90)]);
+
+    expect(thumborUrl.toUnsafeUrl(),
+        "http://thumbor.example.com/unsafe/filters:rotate(90)/http://images.google.com/im-feeling-lucky.jpg");
+  });
+
+  test(
+      'creates an unsafe instance of ThumborUrl with a rotate and noUpscale filter then gets the unsafe url',
+      () {
+    var thumborUrl = new ThumborUrl(
+        host: "http://thumbor.example.com/",
+        imageUrl: "http://images.google.com/im-feeling-lucky.jpg")
+      ..filter([ThumborUrl.rotate(90), ThumborUrl.noUpscale()]);
+
+    expect(thumborUrl.toUnsafeUrl(),
+        "http://thumbor.example.com/unsafe/filters:rotate(90):no_upscale()/http://images.google.com/im-feeling-lucky.jpg");
+  });
 }
