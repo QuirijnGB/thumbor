@@ -1,3 +1,7 @@
+## [0.0.4] - 22-07-2018
+
+* Updated upper boundary of the Dart SDK
+
 ## [0.0.3] - 12-07-2018
 
 * Adds resize
