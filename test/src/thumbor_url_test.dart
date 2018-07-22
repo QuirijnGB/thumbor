@@ -161,4 +161,17 @@ void main() {
     expect(thumborUrl.toUnsafeUrl(),
         "http://thumbor.example.com/unsafe/300x-200/http://images.google.com/im-feeling-lucky.jpg");
   });
+
+  test(
+      'creates an unsafe instance of ThumborUrl with a smart resize then gets the unsafe url',
+      () {
+    var thumborUrl = new ThumborUrl(
+        host: "http://thumbor.example.com/",
+        imageUrl: "http://images.google.com/im-feeling-lucky.jpg")
+      ..resize(height: 200, width: 300)
+      ..smart();
+
+    expect(thumborUrl.toUnsafeUrl(),
+        "http://thumbor.example.com/unsafe/300x200/smart/http://images.google.com/im-feeling-lucky.jpg");
+  });
 }

@@ -36,6 +36,7 @@ class ThumborUrl {
 
   bool _flipVertically = false;
   bool _flipHorizontally = false;
+  bool _smart = false;
 
   ThumborUrl({
     this.host,
@@ -106,6 +107,13 @@ class ThumborUrl {
     this._flipHorizontally = true;
   }
 
+  void smart() {
+    if (!this._hasResize) {
+      throw StateError("Resize must be called first");
+    }
+    this._smart = true;
+  }
+
   String toUrl() {
     return key == null ? toUnsafeUrl() : toSafeUrl();
   }
@@ -167,6 +175,9 @@ class ThumborUrl {
         config += "${_resizeHeight}";
       }
 
+      if (_smart) {
+        config += "/smart";
+      }
       config += "/";
     }
 
