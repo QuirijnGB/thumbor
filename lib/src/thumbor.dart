@@ -14,6 +14,6 @@ class Thumbor {
   }
 
   ThumborUrl buildImage(String imageUrl) {
-    return new ThumborUrl(host: host, key: key, imageUrl: imageUrl);
+    return ThumborUrl(host: host, key: key, imageUrl: imageUrl);
   }
 }

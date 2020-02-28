@@ -1,3 +1,8 @@
+## [1.0.1] - 28-02-2020
+
+* Removes redundant keywords
+* Updates lock file
+
 ## [1.0.0] - 22-07-2018
 
 * Implemented all the Filters

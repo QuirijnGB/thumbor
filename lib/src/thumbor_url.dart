@@ -7,9 +7,8 @@ class TrimOrientation {
 
   final String value;
 
-  static const TrimOrientation topLeft = const TrimOrientation("top-left");
-  static const TrimOrientation bottomRight =
-      const TrimOrientation("bottom-right");
+  static const TrimOrientation topLeft = TrimOrientation("top-left");
+  static const TrimOrientation bottomRight = TrimOrientation("bottom-right");
 }
 
 class HorizontalAlignment {
@@ -17,9 +16,9 @@ class HorizontalAlignment {
 
   final String value;
 
-  static const HorizontalAlignment left = const HorizontalAlignment("left");
-  static const HorizontalAlignment center = const HorizontalAlignment("center");
-  static const HorizontalAlignment right = const HorizontalAlignment("right");
+  static const HorizontalAlignment left = HorizontalAlignment("left");
+  static const HorizontalAlignment center = HorizontalAlignment("center");
+  static const HorizontalAlignment right = HorizontalAlignment("right");
 }
 
 class VerticalAlignment {
@@ -27,9 +26,9 @@ class VerticalAlignment {
 
   final String value;
 
-  static const VerticalAlignment top = const VerticalAlignment("top");
-  static const VerticalAlignment middle = const VerticalAlignment("middle");
-  static const VerticalAlignment bottom = const VerticalAlignment("bottom");
+  static const VerticalAlignment top = VerticalAlignment("top");
+  static const VerticalAlignment middle = VerticalAlignment("middle");
+  static const VerticalAlignment bottom = VerticalAlignment("bottom");
 }
 
 class FitInStyle {
@@ -37,9 +36,9 @@ class FitInStyle {
 
   final String value;
 
-  static const FitInStyle normal = const FitInStyle("fit-in");
-  static const FitInStyle full = const FitInStyle("full-fit-in");
-  static const FitInStyle adaptive = const FitInStyle("adaptive-fit-in");
+  static const FitInStyle normal = FitInStyle("fit-in");
+  static const FitInStyle full = FitInStyle("full-fit-in");
+  static const FitInStyle adaptive = FitInStyle("adaptive-fit-in");
 }
 
 class ImageFormat {
@@ -47,10 +46,10 @@ class ImageFormat {
 
   final String value;
 
-  static const ImageFormat GIF = const ImageFormat("gif");
-  static const ImageFormat JPEG = const ImageFormat("jpeg");
-  static const ImageFormat PNG = const ImageFormat("png");
-  static const ImageFormat WEBP = const ImageFormat("webp");
+  static const ImageFormat GIF = ImageFormat("gif");
+  static const ImageFormat JPEG = ImageFormat("jpeg");
+  static const ImageFormat PNG = ImageFormat("png");
+  static const ImageFormat WEBP = ImageFormat("webp");
 }
 
 class ThumborUrl {
@@ -205,15 +204,15 @@ class ThumborUrl {
   }
 
   void filter(List<String> filters) {
-    if (filters.length == 0) {
+    if (filters.isEmpty) {
       throw ArgumentError("You must provide at least one filter.");
     }
     if (this._filters == null) {
-      this._filters = new List();
+      this._filters = List();
     }
 
     filters.forEach((filter) {
-      if (filter == null || filter.length == 0) {
+      if (filter == null || filter.isEmpty) {
         throw ArgumentError("Filter must not be blank.");
       }
       this._filters.add(filter);
@@ -230,12 +229,12 @@ class ThumborUrl {
 
   String toSafeUrl() {
     if (key == null) {
-      throw new StateError("Cannot build safe URL without a key.");
+      throw StateError("Cannot build safe URL without a key.");
     }
 
     String config = _assembleConfig();
 
-    var hmac = new Hmac(sha1, utf8.encode(key));
+    var hmac = Hmac(sha1, utf8.encode(key));
     var digest = hmac.convert(utf8.encode(config));
     var encoded = base64Url.encode(digest.bytes);
     return host + "$encoded/" + config;
