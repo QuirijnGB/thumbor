@@ -1,3 +1,7 @@
+## [1.0.2] - 28-02-2020
+
+* Fixes Analysis issues
+
 ## [1.0.1] - 28-02-2020
 
 * Removes redundant keywords
