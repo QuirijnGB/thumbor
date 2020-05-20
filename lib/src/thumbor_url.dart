@@ -379,7 +379,7 @@ class ThumborUrl {
   }
 
   static String watermark(String imageUrl, int x, int y, int transparency) {
-    if (imageUrl == null || imageUrl.length == 0) {
+    if (imageUrl == null || imageUrl.isEmpty) {
       throw ArgumentError("Image URL must not be blank.");
     }
     if (transparency < 0 || transparency > 100) {
@@ -404,7 +404,7 @@ class ThumborUrl {
   }
 
   static String frame(String imageUrl) {
-    if (imageUrl == null || imageUrl.length == 0) {
+    if (imageUrl == null || imageUrl.isEmpty) {
       throw ArgumentError("Image URL must not be blank.");
     }
     return "$_FILTER_FRAME($imageUrl)";

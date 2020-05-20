@@ -9,7 +9,7 @@ Add `thumbor` dependency to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  thumbor: any
+  thumbor: 1.0.3
 ```
 
 
@@ -18,13 +18,13 @@ In your Dart code, import `package:thumbor/thumbor.dart` and create a `Thumbor` 
 ```dart
 import 'package:thumbor/thumbor.dart';
 
-final thumbor = Thumbor(hostname: "http://thumbor.example.com", key: "123456789");
+final thumbor = Thumbor(host: "http://thumbor.example.com", key: "123456789");
 ```
 
 Then you can use this instance to create `ThumborUrl`
 ```dart
 
-final thumbor = Thumbor(hostname: "http://thumbor.example.com", key: "123456789");
+final thumbor = Thumbor(host: "http://thumbor.example.com", key: "123456789");
 thumbor
   .buildImage("http://images.google.com/im-feeling-lucky.jpg")
   .toUrl();

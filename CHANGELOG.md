@@ -1,3 +1,7 @@
+## [1.0.3] - 20-05-2020
+
+* Fixes documentation
+
 ## [1.0.2] - 28-02-2020
 
 * Fixes Analysis issues
