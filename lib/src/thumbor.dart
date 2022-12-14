@@ -1,17 +1,17 @@
 import 'package:thumbor/src/thumbor_url.dart';
 
 class Thumbor {
-  final String host;
-  final String key;
-
   Thumbor({
-    this.host,
+    required this.host,
     this.key,
-  }) : assert(host != null) {
+  }) {
     if (host.isEmpty) {
-      throw ArgumentError("Host may not be empty");
+      throw ArgumentError('Host may not be empty');
     }
   }
+
+  final String host;
+  final String? key;
 
   ThumborUrl buildImage(String imageUrl) {
     return ThumborUrl(host: host, key: key, imageUrl: imageUrl);
