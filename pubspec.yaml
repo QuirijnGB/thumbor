@@ -1,7 +1,6 @@
 name: thumbor
 description: A Thumbor client for Dart. Use this to generate generate the URLs to communicate to your Thumbor service
-version: 1.0.3
-author: Quirijn Groot Bluemink <quirijn.grootbluemink@gmail.com>
+version: 1.0.4
 homepage: https://github.com/QuirijnGB/thumbor
 
 environment:

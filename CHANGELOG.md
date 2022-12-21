@@ -1,3 +1,7 @@
+## [1.0.4] - 21-12-2022
+
+* Flutter version upgrade and crypto upgrade [#3](https://github.com/QuirijnGB/thumbor/pull/3) - thanks [@danypata](https://github.com/danypata)
+
 ## [1.0.3] - 20-05-2020
 
 * Fixes documentation

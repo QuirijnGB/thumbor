@@ -9,7 +9,7 @@ Add `thumbor` dependency to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  thumbor: 1.0.3
+  thumbor: 1.0.4
 ```
 
 
